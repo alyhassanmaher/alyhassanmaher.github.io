@@ -3,218 +3,153 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fintech Coursework — Aly Maher</title>
+<title>Projects — Aly Maher</title>
 <meta name="description" content="Every course Aly Maher has taken at ESLSCA University, and the skills gained from each.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#07080b; --bg2:#0d0f14; --fg:#f2f1ec; --muted:#8a8d96; --line:rgba(255,255,255,.09);
-  --accent:#3d7bff; --accent2:#8fb3ff; --gold:#f2b33d;
-  --sans:"Inter Tight",system-ui,sans-serif; --serif:"Instrument Serif",Georgia,serif; --mono:"JetBrains Mono",ui-monospace,monospace;
-  --pad:clamp(16px,5vw,72px);
-  /* area colours */
-  --a-prog:#3d7bff; --a-data:#a46bff; --a-fin:#f2b33d; --a-infra:#2fd2c1; --a-math:#ff7a59; --a-biz:#7ad65a; --a-lang:#e86fb0;
+  --bg:#f6f8fc; --fg:#0f172a; --muted:#64748b; --line:#e2e8f0; --accent:#1f5bd8; --soft:#edf2fb;
+  --sans:"Inter",system-ui,-apple-system,sans-serif;
+  --a-fin:#1f5bd8; --a-prog:#5b6b8c; --a-data:#7a5ea8; --a-infra:#3f8a8c; --a-math:#b06a4a; --a-biz:#6f8a3c; --a-lang:#a5577a;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--fg);font-family:var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
+body{background:var(--bg);color:var(--fg);font:400 17px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
 ::selection{background:var(--accent);color:#fff}
-body::after{content:"";position:fixed;inset:-50%;pointer-events:none;z-index:100;opacity:.06;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  animation:grain 1s steps(4) infinite}
-@keyframes grain{25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-1%,3%)}}
-.orb{position:fixed;width:60vmax;height:60vmax;border-radius:50%;pointer-events:none;z-index:0;
-  background:radial-gradient(circle,rgba(61,123,255,.2),transparent 60%);filter:blur(40px);left:50%;top:30%;transform:translate(-50%,-50%);transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
-.cursor{position:fixed;left:0;top:0;width:10px;height:10px;border-radius:50%;background:var(--fg);pointer-events:none;z-index:200;mix-blend-mode:difference;transform:translate(-50%,-50%);transition:width .3s,height .3s}
-.cursor.big{width:64px;height:64px}
-@media (hover:none){.cursor{display:none}}
+.wrap{max-width:820px;margin:0 auto;padding:0 24px}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:22px var(--pad);
-  font:500 13px/1 var(--mono);text-transform:uppercase;letter-spacing:.06em;mix-blend-mode:difference}
-nav .links{display:flex;gap:28px}
-nav .links a{position:relative}
-nav .links a::after{content:"";position:absolute;left:0;bottom:-4px;height:1px;width:100%;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .4s}
-nav .links a:hover::after,nav .links a.cur::after{transform:scaleX(1);transform-origin:left}
-@media (max-width:700px){nav .links a:not(.keep){display:none}}
+nav{position:sticky;top:0;z-index:10;background:rgba(246,248,252,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:60px}
+nav .name{font-weight:600;text-decoration:none}
+nav .links{display:flex;gap:22px;font-size:15px}
+nav .links a{text-decoration:none;color:var(--muted)}
+nav .links a:hover,nav .links a.cur{color:var(--fg)}
 
-main{position:relative;z-index:1}
-section,.hero{padding:clamp(80px,14vh,160px) var(--pad)}
-.label{font:500 12px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.1em;display:flex;align-items:center;gap:12px;margin-bottom:48px}
-.label b{color:var(--accent);font-weight:500}
-.label::after{content:"";flex:1;height:1px;background:var(--line)}
-
-/* hero */
-.hero{min-height:92svh;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:clamp(32px,6vh,64px)}
-.back{font:400 13px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:auto;padding-top:40px}
+header.intro{padding:72px 24px 48px}
+.back{color:var(--muted);text-decoration:none;font-size:15px}
 .back:hover{color:var(--fg)}
-.big{font-weight:900;font-size:clamp(56px,15vw,260px);line-height:.82;letter-spacing:-.065em;text-transform:uppercase}
-.big .line{display:block;overflow:hidden;padding-bottom:.04em}
-.big .in{display:inline-block;transform:translateY(110%);transition:transform 1.1s cubic-bezier(.2,.9,.1,1)}
-.big .line:nth-child(2) .in{transition-delay:.12s}
-.ready .big .in{transform:none}
-.big em{font-family:var(--serif);font-weight:400;text-transform:none;letter-spacing:-.03em;color:var(--accent2)}
-.hstats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:clamp(28px,5vh,56px);border-top:1px solid var(--line)}
-.hstats div{padding:24px 16px 0 0;border-right:1px solid var(--line)}
-.hstats div+div{padding-left:16px}
-.hstats div:last-child{border-right:0}
-.hstats .n{font:800 clamp(36px,5vw,80px)/1 var(--sans);letter-spacing:-.05em}
-.hstats .k{font:400 12px/1.4 var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:10px}
-@media (max-width:700px){.hstats{grid-template-columns:1fr 1fr}.hstats div:nth-child(2){border-right:0}.hstats div:nth-child(3){padding-left:0}.hstats div:nth-child(n+3){border-top:1px solid var(--line);margin-top:24px}}
+.intro h1{font-size:clamp(36px,6vw,48px);font-weight:700;letter-spacing:-.03em;line-height:1.1;margin-top:24px}
+.intro p{color:var(--muted);margin-top:12px;font-size:18px}
+.hstats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:36px}
+.hstats > div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px}
+.hstats .n{font-size:28px;font-weight:700;letter-spacing:-.02em}
+.hstats .k{font-size:13px;color:var(--muted);line-height:1.4;margin-top:2px}
+@media (max-width:640px){.hstats{grid-template-columns:1fr 1fr}}
 
-/* area bar */
-.areas{display:flex;height:14px;border-radius:99px;overflow:hidden;margin-bottom:28px}
-.areas span{height:100%;transition:flex-grow 1s cubic-bezier(.2,.9,.1,1)}
-.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:clamp(48px,8vh,88px);position:sticky;top:64px;z-index:5;padding:12px 0;background:linear-gradient(var(--bg) 70%,transparent)}
-@media (max-width:900px){.filters{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:calc(var(--pad) * -1);padding-inline:var(--pad)}.filters::-webkit-scrollbar{display:none}.chip{flex:none}}
-.chip{font:500 13px var(--mono);padding:10px 16px;border:1px solid var(--line);border-radius:99px;background:var(--bg2);color:#c9cad0;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:border-color .3s,background .3s,color .3s}
-.chip i{width:8px;height:8px;border-radius:50%;background:var(--c,var(--fg))}
+section{padding:48px 0;border-top:1px solid var(--line)}
+h2{font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px}
+.section-lead{color:#3d3d3d;margin-bottom:24px}
+
+.core{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fc{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px}
+.fc .row{display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
+.fc .row span:first-child{color:var(--accent);font-weight:600}
+.fc .row .now{color:#2563eb;font-weight:500}
+.fc h4{font-size:17px;font-weight:600;margin-top:6px;line-height:1.35}
+.fc .skills,.course .skills,.area .skills{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.fc .skills span,.course .skills span,.area .skills span{font-size:13px;padding:3px 10px;border-radius:99px;background:var(--soft);color:#4a4a4a}
+@media (max-width:620px){.core{grid-template-columns:1fr}}
+.sub-h{font-size:15px;font-weight:600;margin:32px 0 12px}
+.support{display:flex;flex-wrap:wrap;gap:8px}
+.support a{display:inline-flex;gap:8px;align-items:baseline;padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;font-size:15px;text-decoration:none}
+.support a b{font-size:12px;color:var(--c)}
+.support a small{display:none}
+
+.areas{display:flex;height:6px;border-radius:99px;overflow:hidden;margin:20px 0 16px}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.chip{font:500 14px var(--sans);padding:7px 12px;border:1px solid var(--line);border-radius:99px;background:#fff;color:#3d3d3d;cursor:pointer;display:inline-flex;align-items:center;gap:7px}
+.chip i{width:7px;height:7px;border-radius:50%;background:var(--c,var(--fg))}
 .chip small{color:var(--muted)}
-.chip:hover{border-color:rgba(255,255,255,.3)}
+.chip:hover{border-color:#999}
 .chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
-.chip[aria-pressed="true"] small{color:#555}
+.chip[aria-pressed="true"] small{color:#bbb}
 
-/* fintech track */
-.kick{font:500 13px var(--mono);color:var(--gold);text-transform:uppercase;letter-spacing:.1em;margin-bottom:20px}
-.track-intro{display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(24px,5vw,80px);align-items:end;margin-bottom:clamp(40px,7vh,72px)}
-.track-intro h2{font-weight:900;font-size:clamp(44px,7vw,120px);line-height:.86;letter-spacing:-.06em;text-transform:uppercase}
-.track-intro h2 em{font-family:var(--serif);font-weight:400;text-transform:none;color:var(--gold);letter-spacing:-.03em}
-.track-intro p{font-size:clamp(17px,1.5vw,20px);line-height:1.5;color:#c9cad0}
-@media (max-width:860px){.track-intro{grid-template-columns:1fr}}
-.core{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
-.fc{position:relative;border:1px solid rgba(242,179,61,.28);border-radius:20px;padding:26px;background:linear-gradient(150deg,rgba(242,179,61,.09),var(--bg2) 60%);display:flex;flex-direction:column;min-height:230px;overflow:hidden;transition:transform .4s cubic-bezier(.2,.9,.1,1),border-color .4s}
-.fc:hover{transform:translateY(-6px);border-color:rgba(242,179,61,.6)}
-.fc .row{display:flex;justify-content:space-between;font:500 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--gold)}
-.fc .row span:last-child{color:var(--muted)}
-.fc .row .now{color:#2fdc7a}
-.fc h4{font-size:clamp(22px,2.1vw,28px);font-weight:600;letter-spacing:-.03em;line-height:1.1;margin:22px 0 auto}
-.fc .skills{display:flex;flex-wrap:wrap;gap:6px;margin-top:20px}
-.fc .skills span{font:400 12px var(--mono);padding:5px 10px;border-radius:99px;background:rgba(242,179,61,.12);color:#f5cf85}
-.sub-h{font:500 12px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin:56px 0 18px}
-.support{display:flex;flex-wrap:wrap;gap:10px}
-.support a{display:inline-flex;gap:10px;align-items:center;padding:12px 16px;border:1px solid var(--line);border-radius:14px;background:var(--bg2);font-size:15px;transition:border-color .3s}
-.support a:hover{border-color:rgba(255,255,255,.3)}
-.support a b{font:500 11px var(--mono);color:var(--c)}
-.support a small{font:400 11px var(--mono);color:var(--muted)}
-.term-head .next{color:var(--gold)}
-
-/* timeline */
-.term{display:grid;grid-template-columns:minmax(180px,22%) 1fr;gap:clamp(20px,4vw,64px);padding:40px 0;border-top:1px solid var(--line)}
+.term{display:grid;grid-template-columns:150px 1fr;gap:24px;padding:24px 0;border-top:1px solid var(--line)}
 .term.hide{display:none}
-.term-head{position:sticky;top:140px;align-self:start}
-.term-head h3{font:800 clamp(36px,4.6vw,72px)/.9 var(--sans);letter-spacing:-.05em;text-transform:uppercase}
-.term-head h3 em{font-family:var(--serif);font-weight:400;text-transform:none;color:var(--accent2);letter-spacing:-.02em;display:block;font-size:.62em;margin-top:6px}
-.term-head p{font:400 12px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:14px}
-.term-head .live{display:inline-flex;align-items:center;gap:8px;color:#2fdc7a}
-.term-head .live::before{content:"";width:8px;height:8px;border-radius:50%;background:#2fdc7a;box-shadow:0 0 12px #2fdc7a;animation:pulse 2s infinite}
-@keyframes pulse{50%{opacity:.35}}
-@media (max-width:800px){.term{grid-template-columns:1fr}.term-head{position:static}}
-
-.course{display:grid;grid-template-columns:90px 1fr;gap:20px;padding:22px 0;border-bottom:1px solid var(--line);position:relative}
+.term-head h3{font-size:20px;font-weight:700;letter-spacing:-.01em}
+.term-head h3 em{font-style:normal;color:var(--muted);font-weight:500;margin-left:6px}
+.term-head p{font-size:13px;color:var(--muted);margin-top:2px}
+.term-head .live{color:#2563eb}
+.term-head .next{color:var(--accent)}
+.course{display:grid;grid-template-columns:80px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
 .course:last-child{border-bottom:0}
 .course.hide{display:none}
-.course::before{content:"";position:absolute;inset:0 -16px;background:linear-gradient(90deg,color-mix(in srgb,var(--c) 12%,transparent),transparent 70%);opacity:0;transition:opacity .4s;border-radius:12px;z-index:-1}
-.course:hover::before{opacity:1}
-.course .code{font:500 13px var(--mono);color:var(--c);padding-top:7px}
-.course h4{font-size:clamp(20px,2vw,28px);font-weight:600;letter-spacing:-.025em;line-height:1.15;transition:transform .5s cubic-bezier(.2,.9,.1,1)}
-.course:hover h4{transform:translateX(8px)}
-.course h4 .note{font:400 11px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-left:10px;vertical-align:middle;white-space:nowrap}
-.course .skills{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-.course .skills span{font:400 12px var(--mono);padding:5px 10px;border:1px solid var(--line);border-radius:99px;color:#b9bbc2}
-@media (max-width:560px){.course{grid-template-columns:1fr;gap:6px}.course .code{padding-top:0}}
+.course .code{font-size:13px;font-weight:600;color:var(--c);padding-top:3px}
+.course h4{font-size:16px;font-weight:600;line-height:1.4}
+.course h4 .note{font-size:12px;font-weight:400;color:var(--muted);margin-left:8px}
+@media (max-width:620px){.term{grid-template-columns:1fr;gap:8px}.course{grid-template-columns:1fr;gap:2px}}
 
-/* skills map */
-.map{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
-.area{background:var(--bg2);border:1px solid var(--line);border-radius:20px;padding:28px;position:relative;overflow:hidden}
-.area::before{content:"";position:absolute;left:0;top:0;right:0;height:3px;background:var(--c)}
+.map{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.area{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;border-top:3px solid var(--c)}
 .area .hd{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
-.area h3{font-size:26px;font-weight:600;letter-spacing:-.03em}
-.area .cnt{font:400 12px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
-.area p{color:#a9abb3;line-height:1.55;margin-top:12px}
-.area .skills{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
-.area .skills span{font:400 12px var(--mono);padding:5px 10px;border-radius:99px;background:color-mix(in srgb,var(--c) 14%,transparent);color:color-mix(in srgb,var(--c) 55%,#fff)}
+.area h3{font-size:17px;font-weight:600}
+.area .cnt{font-size:13px;color:var(--muted);white-space:nowrap}
+.area p{font-size:15px;color:var(--muted);margin-top:6px;line-height:1.5}
+@media (max-width:620px){.map{grid-template-columns:1fr}}
 
-.cta{text-align:center}
-.cta h2{font-weight:900;font-size:clamp(48px,10vw,170px);line-height:.85;letter-spacing:-.065em;text-transform:uppercase;margin-bottom:40px}
-.cta h2 em{font-family:var(--serif);font-weight:400;text-transform:none;color:var(--accent2)}
-.btn{display:inline-flex;align-items:center;gap:14px;padding:20px 32px;border-radius:99px;background:var(--fg);color:var(--bg);font:600 18px var(--sans);position:relative;overflow:hidden}
-.btn::before{content:"";position:absolute;inset:0;background:var(--accent);transform:translateY(101%);transition:transform .5s cubic-bezier(.2,.9,.1,1)}
-.btn:hover::before{transform:none}
-.btn:hover{color:#fff}
-.btn>*{position:relative}
-.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line);margin-left:10px}
-footer{display:flex;justify-content:space-between;padding:28px var(--pad);border-top:1px solid var(--line);font:400 12px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em;position:relative;z-index:1;flex-wrap:wrap;gap:12px}
-
-.rv{opacity:0;transform:translateY(32px);transition:opacity .9s cubic-bezier(.2,.9,.1,1),transform .9s cubic-bezier(.2,.9,.1,1)}
-.rv.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation:none!important;transition:none!important}
-  .rv{opacity:1;transform:none}.big .in{transform:none}
-}
+.more{display:inline-block;color:var(--accent);font-weight:500;text-decoration:none;margin-right:20px}
+.more:hover{text-decoration:underline}
+footer{padding:40px 0 56px;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.rv{opacity:1}
 </style>
+<link rel="stylesheet" href="fx.css">
 </head>
 <body>
-<div class="cursor" id="cursor"></div>
-<div class="orb" id="orb"></div>
 
-<nav>
-  <a href="index.html" class="keep">Aly Maher ©26</a>
-  <div class="links">
-    <a href="index.html#about">About</a><a href="index.html#work">Experience</a><a href="index.html#projects">Projects</a><a href="courses.html" class="cur">Courses</a><a href="index.html#contact" class="keep">Contact</a>
-  </div>
-</nav>
+<nav><div class="wrap">
+  <a class="name" href="index.html">Aly Maher</a>
+  <div class="links"><a href="index.html#about">About</a><a href="courses.html" class="cur">Projects</a><a href="index.html#contact">Contact</a></div>
+</div></nav>
 
-<main>
-  <header class="hero">
+<main id="top">
+  <header class="intro wrap">
     <a class="back" href="index.html">← Back to home</a>
-    <p class="kick">Fintech major · ESLSCA University</p>
-    <h1 class="big"><span class="line"><span class="in">Course</span></span><span class="line"><span class="in">work<em>.</em></span></span></h1>
+    <h1 data-split>Projects</h1>
+    <p>Fintech major at ESLSCA University. Every course I've taken, and what I took from it.</p>
     <div class="hstats">
       <div><div class="n" id="sCourses">0</div><div class="k">Courses at ESLSCA</div></div>
-      <div><div class="n" id="sFin" style="color:var(--gold)">0</div><div class="k">Fintech & blockchain courses</div></div>
-      <div><div class="n" id="sSkills">0</div><div class="k">Distinct skills gained</div></div>
+      <div><div class="n" id="sFin" style="color:var(--accent)">0</div><div class="k">Fintech & blockchain courses</div></div>
+      <div><div class="n" id="sSkills">0</div><div class="k">Skills gained</div></div>
       <div><div class="n" id="sLive">0</div><div class="k">In progress this fall</div></div>
     </div>
   </header>
 
-  <section id="track">
-    <div class="label rv"><b>01</b> The Fintech track</div>
-    <div class="track-intro">
-      <h2 class="rv">Building the <em>tech behind money.</em></h2>
-      <p class="rv">My major courses, plus the Computer Science, data and business courses I rely on for Fintech work.</p>
-    </div>
+  <section id="track"><div class="wrap">
+    <h2>The Fintech track</h2>
+    <p class="section-lead">My major courses, plus the supporting courses I rely on for Fintech work.</p>
     <div class="core" id="core"></div>
-    <h3 class="sub-h rv">Supporting courses</h3>
+    <h3 class="sub-h">Supporting courses</h3>
     <div class="support" id="support"></div>
-  </section>
+  </div></section>
 
-  <section id="timeline">
-    <div class="label rv"><b>02</b> Every course, semester by semester</div>
-    <div class="areas rv" id="areaBar" aria-hidden="true"></div>
+  <section id="timeline"><div class="wrap">
+    <h2>Every course, semester by semester</h2>
+    <div class="areas" id="areaBar" aria-hidden="true"></div>
     <div class="filters" id="filters" role="toolbar" aria-label="Filter by area"></div>
     <div id="terms"></div>
-  </section>
+  </div></section>
 
-  <section id="map">
-    <div class="label rv"><b>03</b> What it adds up to</div>
+  <section id="map"><div class="wrap">
+    <h2>What it adds up to</h2>
+    <p class="section-lead">Skills grouped by area.</p>
     <div class="map" id="areaMap"></div>
-  </section>
+  </div></section>
 
-  <section class="cta">
-    <h2 class="rv">Code meets <em>capital.</em></h2>
-    <a class="btn rv" href="index.html#projects"><span>See the projects</span><span>↗</span></a>
-    <a class="btn ghost rv" href="mailto:alymaher122@gmail.com"><span>Get in touch</span></a>
-  </section>
+  <section><div class="wrap">
+    <a class="more" href="index.html">← Back to home</a><a class="more" href="mailto:alymaher122@gmail.com">Email me</a>
+  </div></section>
 </main>
 
-<footer><span>© 2026 Aly Maher</span><span>B.Sc. Computer Science · ESLSCA University</span><a href="#top" onclick="scrollTo({top:0});return false">Back to top ↑</a></footer>
+<footer><div class="wrap"><span>© 2026 Aly Maher</span><span>B.Sc. Computer Science, Fintech major · ESLSCA University</span></div></footer>
 
 <script>
 const AREAS = {
   fin:   {name:'Fintech & Blockchain',  c:'var(--a-fin)',   blurb:'My major. Accounting and finance foundations, then blockchain, smart contracts, digital payments, and AI and cloud applied to financial services.'},
-  prog:  {name:'Software & Web',        c:'var(--a-prog)',  blurb:'From first Python script to full-stack JavaScript apps — data structures, object-oriented design and software engineering practice.'},
+  prog:  {name:'Software & Web',        c:'var(--a-prog)',  blurb:'From first Python script to full-stack web apps: data structures, object-oriented design and software engineering practice.'},
   data:  {name:'Data & AI',             c:'var(--a-data)',  blurb:'Classical ML through deep learning, plus the analytics and visualisation work around it.'},
   infra: {name:'Systems, Cloud & Security', c:'var(--a-infra)', blurb:'How computers, networks and the cloud actually run — and how to defend them.'},
   math:  {name:'Mathematics',           c:'var(--a-math)',  blurb:'The maths underneath machine learning: calculus, linear algebra, probability and statistics.'},
@@ -340,7 +275,7 @@ document.getElementById('support').innerHTML = SUPPORT.map(code => all.find(c =>
 
 // ---------- stats ----------
 const countUp = (el, end) => {
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return el.textContent = end;
+  return el.textContent = end;
   const t0 = performance.now();
   const step = t => { const p = Math.min(1, (t - t0) / 1600); el.textContent = Math.round(end * (1 - Math.pow(1 - p, 4))); if (p < 1) requestAnimationFrame(step); };
   requestAnimationFrame(step);
@@ -357,12 +292,7 @@ setTimeout(() => {
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.1});
 document.querySelectorAll('.rv').forEach(el => io.observe(el));
 
-const cur = document.getElementById('cursor'), orb = document.getElementById('orb');
-let mx = innerWidth/2, my = innerHeight/2, cx = mx, cy = my;
-addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY;
-  orb.style.transform = `translate(calc(-50% + ${(mx - innerWidth/2) * .15}px), calc(-50% + ${(my - innerHeight/2) * .15}px))`; });
-(function loop(){ cx += (mx-cx)*.2; cy += (my-cy)*.2; cur.style.left = cx+'px'; cur.style.top = cy+'px'; requestAnimationFrame(loop); })();
-document.addEventListener('mouseover', e => cur.classList.toggle('big', !!e.target.closest('a,button')));
 </script>
+<script src="fx.js"></script>
 </body>
 </html>
